@@ -1,0 +1,54 @@
+/**
+ * My commodity trading network
+ */
+namespace org.uchi.biznet
+
+asset GenomeFile identified by fileId {
+    o String fileId
+    o String description optional
+    o String url
+    o DateTime createdAt
+    o DateTime updatedAt
+    --> Person owner
+    o String [] viewers optional
+    o String [] editors optional
+}
+
+participant Person identified by id {
+    o String id
+    o String firstName optional
+    o String lastName optional
+    o String title optional
+}
+
+participant Student extends Person {
+  o Professor supervisor optional
+}
+
+participant Professor extends Person {
+  o Student [] students optional
+}
+
+transaction AddNew {
+    o String description 
+    o String url optional
+    o String fileId
+    o String owner
+    o String [] viewers
+    o String [] editors
+}
+
+transaction UpdateGenome {
+    o String [] viewers optional
+    o String [] editors optional
+    o String [] remove optional
+    o String description optional
+    o String url optional
+    o GenomeFile genome
+    o String owner
+}
+
+transaction RemoveGenome {
+  	o String owner optional
+    o GenomeFile genome
+}

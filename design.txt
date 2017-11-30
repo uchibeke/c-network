@@ -1,0 +1,31 @@
+Design
+
+Storage:
+- Genome ID and other info stored in a firebase realtime database database
+- Genome info and file stored in another database (Maybe use bae64 string)
+- A database of Users with generated key for blockchain login
+- Use http://lollyrock.com/articles/nodejs-encryption/ or https://www.npmjs.com/package/crypto-js to encrypt
+
+
+Blockchain side
+
+- Participants
+	- Person
+
+	- Professor
+	- Student
+	- Reseacher
+
+- Assets
+	
+
+- Transactions
+
+- Query
+
+
+
+Flow
+- Save
+	Save file to database and get back url of file after save is complete. 
+	Encrpt the url and save to the blockchain

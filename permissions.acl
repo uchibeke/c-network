@@ -1,0 +1,56 @@
+/**
+ * Access control rules for tutorial-network
+ */
+rule Default {
+    description: "Allow all participants access to all resources"
+    participant: "ANY"
+    operation: READ
+    resource: "org.uchi.biznet.*"
+    action: ALLOW
+}
+
+rule Create {
+    description: "Allow all participants access to all resources"
+    participant: "ANY"
+    operation: CREATE
+    resource: "org.uchi.biznet.*"
+    action: ALLOW
+}
+
+rule NetworkAdminUser {
+    description: "Grant business network administrators full access to user resources"
+    participant: "org.hyperledger.composer.system.NetworkAdmin"
+    operation: ALL
+    resource: "**"
+    action: ALLOW
+}
+
+rule SystemACL {
+  description:  "System ACL to permit all access"
+  participant: "ANY"
+  operation: ALL
+  resource: "org.hyperledger.composer.system.**"
+  action: ALLOW
+}
+
+/**
+* For example, the rule below states that any instance of the org.example.SampleParticipant type can perform 
+* ALL operations on all instances of org.example.SampleAsset IF the participant is the owner of the asset.
+* Copy
+*/
+rule OwnerCanAccess1 {
+    description: "Person can perform all actions on an asset if they are owner"
+    participant(m): "org.uchi.biznet.Student"
+    operation: ALL
+    resource(v): "org.uchi.biznet.GenomeFile"
+    condition: (v.owner.getIdentifier() == m.getIdentifier())
+    action: ALLOW
+}
+rule OwnerCanAccess2 {
+    description: "Person can perform all actions on an asset if they are owner"
+    participant(m): "org.uchi.biznet.Professor"
+    operation: ALL
+    resource(v): "org.uchi.biznet.GenomeFile"
+    condition: (v.owner.getIdentifier() == m.getIdentifier())
+    action: ALLOW
+}
