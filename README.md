@@ -58,3 +58,15 @@
   "title": "Mr"
 }
 ```
+
+## Add Student
+
+```
+{
+  "$class": "org.uchi.biznet.Student",
+  "id": "s1",
+  "firstName": "Jenny",
+  "lastName": "Tommy",
+  "title": ""
+}
+```
