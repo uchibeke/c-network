@@ -1,0 +1,83 @@
+namespace org.assetchain.biznet
+
+asset File identified by fileId {
+    o String fileId
+    o String description optional
+    o String url
+    o DateTime createdAt
+    o DateTime updatedAt
+    --> User owner
+    --> User [] viewers optional
+    --> Role [] roles optional
+    o String [] editors optional
+}
+
+participant Person identified by id {
+    o String id
+    o String firstName optional
+    o String lastName optional
+    o String title optional
+}
+
+participant Student extends Person {
+  o Professor supervisor optional
+}
+
+participant Professor extends Person {
+  o Student [] students optional
+}
+
+participant User identified by id {
+  o String id
+  o String name
+}
+
+participant Role identified by id {
+  o String id
+  o String name
+  --> User owner
+  o User [] members
+}
+
+transaction AddFile {
+    o String description 
+    o String url
+    o String fileId
+    --> User owner
+    o String [] viewers
+    o String [] editors
+}
+
+transaction UpdateFile {
+    o String description optional
+    o String url
+    --> File file
+    --> User owner
+    --> User [] viewers
+    o String [] editors
+    o String [] remove
+}
+
+transaction CanView {
+    --> File file
+    --> User user
+}
+
+transaction GiveAccess {
+    --> File file
+    --> User owner
+    --> User [] viewers
+    --> User [] editors
+}
+
+
+transaction RevokeAccess {
+    --> File file
+    --> User owner
+    --> User [] users
+}
+
+transaction RemoveFile {
+    --> Person owner
+    o File file
+}

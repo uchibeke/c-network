@@ -5,7 +5,7 @@ rule Default {
     description: "Allow all participants access to all resources"
     participant: "ANY"
     operation: READ
-    resource: "org.uchi.biznet.*"
+    resource: "org.assetchain.biznet.*"
     action: ALLOW
 }
 
@@ -13,7 +13,7 @@ rule Create {
     description: "Allow all participants access to all resources"
     participant: "ANY"
     operation: CREATE
-    resource: "org.uchi.biznet.*"
+    resource: "org.assetchain.biznet.*"
     action: ALLOW
 }
 
@@ -38,19 +38,11 @@ rule SystemACL {
 * ALL operations on all instances of org.example.SampleAsset IF the participant is the owner of the asset.
 * Copy
 */
-rule OwnerCanAccess1 {
+rule OwnerCanAccess {
     description: "Person can perform all actions on an asset if they are owner"
-    participant(m): "org.uchi.biznet.Student"
+    participant(m): "org.assetchain.biznet.User"
     operation: ALL
-    resource(v): "org.uchi.biznet.GenomeFile"
-    condition: (v.owner.getIdentifier() == m.getIdentifier())
-    action: ALLOW
-}
-rule OwnerCanAccess2 {
-    description: "Person can perform all actions on an asset if they are owner"
-    participant(m): "org.uchi.biznet.Professor"
-    operation: ALL
-    resource(v): "org.uchi.biznet.GenomeFile"
+    resource(v): "org.assetchain.biznet.File"
     condition: (v.owner.getIdentifier() == m.getIdentifier())
     action: ALLOW
 }

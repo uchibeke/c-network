@@ -1,4 +1,4 @@
-# org.uchi.biznet
+# org.assetchain.biznet
 
 - Genrate .bna file: `composer archive create -t dir -n .`
 - Install composer runtime: `composer runtime install --card PeerAdmin@hlfv1 --businessNetworkName tutorial-network`
@@ -8,65 +8,67 @@
 - Start rest server: `composer-rest-server`
 - Update with new .bna file `composer network update -a <business-network-archive> -c <card-name>`
 
-## New
+## AddFile
 
 ```
 {
-  "$class": "org.uchi.biznet.AddNew",
+  "$class": "org.assetchain.biznet.AddFile",
   "description": "",
   "url": "http://uchi.me",
-  "fileId": "f1",
-  "owner": "1",
-  "viewers": [12,34],
-  "editors": [10,4,13,100],
+  "fileId": "theUniqueIdOfFile",
+  "owner": "userIdOfOwner",
+  "viewers": ["userId", "userId"],
+  "editors": ["userId", "userId"],
   "description": "My cool asset"
 }
 ```
 
-## Update
 
+
+##  CanView
 ```
 {
-  "$class": "org.uchi.biznet.UpdateGenome",
-  "owner": "1",
-  "viewers": [111,333,444],
-  "editors": [44,4],
-  "remove": [3,2],
-  "fileId": "f5",
-  "genome": {
-    "$class": "org.uchi.biznet.GenomeFile",
-    "fileId": "f5",
-    "description": "",
-    "url": "",
-    "createdAt": "2017-11-30T19:27:11.887Z",
-    "updatedAt": "2017-11-30T19:27:11.887Z",
-    "owner": "resource:org.uchi.biznet.Person#9395",
-    "viewers": [],
-    "editors": []
-  }
+  "$class": "org.assetchain.biznet.CanView",
+  "file": "theUniqueIdOfFile",
+  "user": "userIdOfUserToConfirmViewPrevilegeFor"
+}
+
+```
+
+
+## GiveAccess
+```
+{
+  "$class": "org.assetchain.biznet.GiveAssess",
+  "file": "theUniqueIdOfFile",
+  "owner": "userIdOfOwner",
+  "viewers": ["userIdToGiveAccess", "userIdToGiveAccess"],
+  "editors": []
 }
 ```
 
-## Add Prof
 
+## RevokeAccess
 ```
 {
-  "$class": "org.uchi.biznet.Professor",
-  "id": "p2",
-  "firstName": "Uchi",
-  "lastName": "Uchibeke",
-  "title": "Mr"
+  "$class": "org.assetchain.biznet.RevokeAccess",
+  "file": "theUniqueIdOfFile",
+  "owner": "userIdOfOwner",
+  "users": ["userIdToRevokeAccess", "userIdToRevokeAccess"]
 }
 ```
 
-## Add Student
+## UpdateFile
 
 ```
 {
-  "$class": "org.uchi.biznet.Student",
-  "id": "s1",
-  "firstName": "Jenny",
-  "lastName": "Tommy",
-  "title": ""
+  "$class": "org.assetchain.biznet.UpdateFile",
+  "url": "",
+  "file": "theUniqueIdOfFile",
+  "owner": "userIdOfOwner",
+  "viewers": [list of user ids new viewers],
+  "editors": [list of user ids new editors],
+  "remove": [list of user ids to remove as viewers and editors]
 }
 ```
+
