@@ -42,7 +42,7 @@ rule OwnerCanAccess {
     description: "Person can perform all actions on an asset if they are owner"
     participant(m): "org.assetchain.biznet.User"
     operation: ALL
-    resource(v): "org.assetchain.biznet.File"
+    resource(v): "org.assetchain.biznet.Resource"
     condition: (v.owner.getIdentifier() == m.getIdentifier())
     action: ALLOW
 }

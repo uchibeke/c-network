@@ -6,7 +6,7 @@
 - Start network: `composer network start --card PeerAdmin@hlfv1 --networkAdmin admin --networkAdminEnrollSecret adminpw --archiveFile tutorial-network@0.0.1.bna --file networkadmin.card`
 - Ping a network: `composer network ping --card admin@t-network`
 - Import an admin card: `composer card import --file networkadmin.card`
-- Start rest server: `composer-rest-server`
+- Start rest server: `composer-rest-server -c admin@c-net -n never -w true`
 - Update with new .bna file `composer network update -a <business-network-archive> -c <card-name>`
 
 ## AddFile

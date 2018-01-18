@@ -1,9 +1,9 @@
 namespace org.assetchain.biznet
 
-asset File identified by fileId {
-    o String fileId
+asset Resource identified by assetId {
+    o String assetId
     o String description optional
-    o String url
+    o String url optional
     o DateTime createdAt
     o DateTime updatedAt
     --> User owner
@@ -29,7 +29,7 @@ participant Professor extends Person {
 
 participant User identified by id {
   o String id
-  o String name
+  o String name optional
 }
 
 participant Role identified by id {
@@ -39,45 +39,45 @@ participant Role identified by id {
   o User [] members
 }
 
-transaction AddFile {
-    o String description 
-    o String url
-    o String fileId
+transaction AddNew {
+    o String description optional
+    o String url optional
+    o String assetId
     --> User owner
-    o String [] viewers
-    o String [] editors
+    o String [] viewers optional
+    o String [] editors optional
 }
 
-transaction UpdateFile {
+transaction Update {
     o String description optional
-    o String url
-    --> File file
+    o String url optional
+    --> Resource asset
     --> User owner
     --> User [] viewers
-    o String [] editors
-    o String [] remove
+    o String [] editors optional
+    o String [] remove optional
 }
 
 transaction CanView {
-    --> File file
+    --> Resource asset
     --> User user
 }
 
 transaction GiveAccess {
-    --> File file
+    --> Resource asset
     --> User owner
-    --> User [] viewers
-    --> User [] editors
+    --> User [] viewers optional
+    --> User [] editors optional
 }
 
 
 transaction RevokeAccess {
-    --> File file
+    --> Resource asset
     --> User owner
     --> User [] users
 }
 
-transaction RemoveFile {
+transaction Remove {
     --> Person owner
-    o File file
+    o Resource file
 }
