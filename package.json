@@ -1,7 +1,7 @@
 {
   "name": "c-net",
   "version": "0.0.1",
-  "description": "My Business Network",
+  "description": "Asset Network",
   "scripts": {
     "test": "mocha --recursive"
   },
