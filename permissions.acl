@@ -5,7 +5,7 @@ rule Default {
     description: "Allow all participants access to all resources"
     participant: "ANY"
     operation: READ
-    resource: "org.assetchain.biznet.*"
+    resource: "org.recordchain.biznet.*"
     action: ALLOW
 }
 
@@ -13,7 +13,7 @@ rule Create {
     description: "Allow all participants access to all resources"
     participant: "ANY"
     operation: CREATE
-    resource: "org.assetchain.biznet.*"
+    resource: "org.recordchain.biznet.*"
     action: ALLOW
 }
 
@@ -33,16 +33,3 @@ rule SystemACL {
   action: ALLOW
 }
 
-/**
-* For example, the rule below states that any instance of the org.example.SampleParticipant type can perform 
-* ALL operations on all instances of org.example.SampleAsset IF the participant is the owner of the asset.
-* Copy
-*/
-rule OwnerCanAccess {
-    description: "Person can perform all actions on an asset if they are owner"
-    participant(m): "org.assetchain.biznet.User"
-    operation: ALL
-    resource(v): "org.assetchain.biznet.Resource"
-    condition: (v.owner.getIdentifier() == m.getIdentifier())
-    action: ALLOW
-}
